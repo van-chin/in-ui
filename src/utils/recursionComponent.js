@@ -1,4 +1,4 @@
-import endsWith from "lodash/endsWith";
+import endsWith from "lodash.endswith";
 import { ROOT_COMPONENT_NAME } from "../enums/rootComponetType";
 
 function recursionComponent(VueComponent, tag) {

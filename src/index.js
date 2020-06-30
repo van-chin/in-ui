@@ -4,6 +4,7 @@ import RadioGroup from "./radio-group";
 import Upload from "./upload";
 import Form from "./form";
 import Preview from "./preview";
+import Table from "./table";
 
 import "./styles/index.scss";
 
@@ -13,7 +14,8 @@ const components = {
   RadioGroup,
   Preview,
   Upload,
-  Form
+  Form,
+  Table
 };
 const install = function(Vue, options = {}) {
   console.info(options);
