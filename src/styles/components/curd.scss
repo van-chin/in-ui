@@ -1,0 +1,49 @@
+$prefixCls:'in-curd';
+
+
+.#{$prefixCls} {
+    // border: 1px solid red;
+    &-footer {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // border: 1px solid red;
+
+        &-left-actions {
+            // min-width: 10px;
+        }
+
+        &-right-pagination {
+            &-paginations {
+                padding-right: 0 !important;
+                .btn-next {
+                    margin-right: 0 !important;
+                }
+            }
+
+        }
+    }
+}
+
+// .in-curd {
+//     .footer {
+//         margin-top: 10px;
+//         display: flex;
+//         justify-content: space-between;
+//         align-items: center;
+
+//         .left-actions {
+
+//         }
+//         .right-pagination {
+//             .in-pagination {
+//                 padding-right: 0;
+//                 .btn-next {
+//                     margin-right: 0;
+//                 }
+//             }
+
+//         }
+//     }
+// }
