@@ -10,6 +10,22 @@
         <in-button text="编辑" />
       </template>
     </in-table>
+    <el-divider content-position="left">Viewer</el-divider>
+    <in-viewer :file-list="vfileList"></in-viewer>
+    <el-divider content-position="left">Curd</el-divider>
+    <in-curd :tables="tables" :paginations="paginations">
+      <template v-slot:header-left-filter>
+        header-left-filter sss vv
+      </template>
+      <template #header-right-actions>
+        header-right-actions dd
+      </template>
+      <template slot="footer-left-actions">footer-left-actions</template>
+      <template #actions="{ scope }">
+        <in-button text="编辑" type="text" />
+        {{ scope.row.name }}
+      </template>
+    </in-curd>
     <!-- <el-divider content-position="left">表单</el-divider>
     <in-form :options="inFormOptions">
       <template slot="cover-uploader">
@@ -27,6 +43,57 @@ export default {
   },
   data() {
     return {
+      vfileList: [
+        {
+          name: "dd",
+          url:
+            "http://qiniu.in-lin.com/lh/oths/0L66ioQ9HqNaMgPqTAjZccnScQ9MTAyEz1at1loe.jpeg"
+        },
+        {
+          name: "vv",
+          url:
+            "http://qiniu.in-lin.com/lh/oths/5l4oMr8qy4FKcJFqEcPjuMZKImluUFfOUJE6G3sk.jpeg"
+        }
+      ],
+      paginations: {
+        background: true,
+        total: 100,
+        layout: "total, sizes,jumper, prev, pager, next"
+      },
+      tables: {
+        columns: [
+          {
+            label: "123",
+            prop: "name"
+          },
+          {
+            label: "标识",
+            prop: "code"
+          },
+
+          {
+            label: "创建时间",
+            key: "created_at",
+            width: 150
+          },
+          {
+            label: "更新时间",
+            key: "updated_at",
+            width: 150
+          },
+          {
+            label: "操作",
+            slot_name: "actions",
+            fixed: "right"
+          }
+        ],
+        data: [
+          {
+            name: "测试数据",
+            created_at: "ddd"
+          }
+        ]
+      },
       tdata: [
         {
           name: "1",

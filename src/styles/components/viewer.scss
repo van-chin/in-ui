@@ -1,0 +1,13 @@
+$prefixCls: "in-viewer";
+
+.#{$prefixCls} {
+  &-files {
+    &-image {
+      border-radius: 4px;
+      margin-right: 8px;
+      cursor: pointer;
+      width: 100px;
+      height: 100px;
+    }
+  }
+}

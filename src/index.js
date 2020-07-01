@@ -5,6 +5,8 @@ import Upload from "./upload";
 import Form from "./form";
 import Preview from "./preview";
 import Table from "./table";
+import Curd from "./curd";
+import Viewer from "./viewer";
 
 import "./styles/index.scss";
 
@@ -15,10 +17,12 @@ const components = {
   Preview,
   Upload,
   Form,
-  Table
+  Table,
+  Curd,
+  Viewer
 };
 const install = function(Vue, options = {}) {
-  console.info(options);
+  // console.info(options);
   Object.keys(components).forEach(key => {
     console.log("key: ", key);
     Vue.component(components[key].name, components[key]);
