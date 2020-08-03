@@ -24,7 +24,7 @@ const components = {
 const install = function(Vue, options = {}) {
   // console.info(options);
   Object.keys(components).forEach(key => {
-    console.log("key: ", key);
+    // console.log("key: ", key);
     Vue.component(components[key].name, components[key]);
   });
 };

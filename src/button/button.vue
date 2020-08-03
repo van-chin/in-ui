@@ -1,7 +1,5 @@
 <template>
-  <el-button v-bind="$attrs" v-on="$listeners" @click="handleClick"
-    >{{ text }}
-  </el-button>
+  <el-button v-bind="$attrs" @click="handleClick">{{ text }} </el-button>
 </template>
 
 <script>
@@ -11,14 +9,14 @@ export default {
     text: String
   },
   created() {
-    console.info("InButton => ...");
+    // console.info("InButton => ...");
   },
   mounted() {
-    console.info("InButton mounted => ...");
+    // console.info("InButton mounted => ...");
   },
   methods: {
     handleClick() {
-      console.info("in-button handleClick add prevent ");
+      // console.info("in-button handleClick add prevent ");
       this.$emit("click");
     }
   }

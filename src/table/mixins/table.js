@@ -5,6 +5,12 @@ export default {
       default: () => {
         return [];
       }
+    },
+    headerCellStyle: {
+      type: Object,
+      default: () => {
+        return {};
+      }
     }
   },
   methods: {

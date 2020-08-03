@@ -40,7 +40,15 @@
           list-type="picture-card"
           :on-success="handleOnSuccess"
         >
-          <i slot="default" class="el-icon-plus"></i>
+          <template slot="default">
+            <slot>
+              <i class="el-icon-plus"></i>
+            </slot>
+          </template>
+
+          <template slot="tip">
+            <slot name="tip"></slot>
+          </template>
         </el-upload>
       </li>
     </ul>
@@ -55,11 +63,20 @@
 
 <script>
 import preview from "../preview";
+import draggable from "vuedraggable";
 
 export default {
   name: "InUpload",
-  components: { "in-preview": preview },
+  components: { "in-preview": preview, draggable },
   props: {
+    props: {
+      type: Object,
+      default: () => {
+        return {
+          data: "data"
+        };
+      }
+    },
     multifile: {
       type: Boolean,
       default: () => {
@@ -105,7 +122,7 @@ export default {
   computed: {},
   methods: {
     calcUploaderVisible() {
-      console.info("calcUploaderVisible", this.fileList.length);
+      // console.info("calcUploaderVisible", this.fileList.length);
       if (this.multifile) {
         this.uploaderVisible = true;
       } else {
@@ -113,7 +130,12 @@ export default {
       }
     },
     handleOnSuccess(response, file, fileList) {
-      this.fileList.push(response.data);
+      console.info(file);
+      let tmpFile = {};
+      tmpFile.name = file.name;
+      tmpFile.url = response[this.props.data];
+      tmpFile.uid = file.uid;
+      this.fileList.push(tmpFile);
       this.calcUploaderVisible();
       this.$emit("on-success", response, file, fileList);
     },

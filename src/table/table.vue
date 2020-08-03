@@ -22,12 +22,7 @@ export default {
   components: {},
   mixins: [table],
   data() {
-    return {
-      headerCellStyle: {
-        backgroundColor: "#DCDFE6",
-        color: "#606266"
-      }
-    };
+    return {};
   },
   methods: {
     hasSlot(column) {
