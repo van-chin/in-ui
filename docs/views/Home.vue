@@ -1,45 +1,34 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-
-    <el-divider content-position="left">Uploader</el-divider>
-
     <in-upload
-      action="http://192.168.0.5:8151/merchant/fileupload/upload"
+      action="http://192.168.0.90:8151/merchant/fileupload/upload"
+      :file-list="vfileList"
+      :multifile="false"
+      :multiple="false"
       :props="{ data: 'tdata' }"
     >
     </in-upload>
-
-    <el-divider content-position="left">按钮</el-divider>
-    <in-button text="ddd" @click="handleDdClick" />
-    <el-divider content-position="left">Table</el-divider>
-    <in-table :columns="columns" :data="tdata">
-      <template slot="action">
-        <in-button text="编辑" />
-      </template>
-    </in-table>
-    <el-divider content-position="left">Viewer</el-divider>
-    <in-viewer :file-list="vfileList"></in-viewer>
     <el-divider content-position="left">Curd</el-divider>
-    <in-curd :tables="tables" :paginations="paginations">
-      <template v-slot:header-left-filter>
-        header-left-filter sss vv
-      </template>
-      <template #header-right-actions>
-        header-right-actions dd
-      </template>
-      <template slot="footer-left-actions">footer-left-actions</template>
-      <template #actions="{ scope }">
-        <in-button text="编辑" type="text" />
-        {{ scope.row.name }}
-      </template>
-    </in-curd>
-    <el-divider content-position="left">表单</el-divider>
-    <in-form :options="inFormOptions">
-      <template slot="cover-uploader">
-        1234
-      </template>
-    </in-form>
+    <div class="layout">
+      <div class="left">
+        leftdddddd
+      </div>
+      <div class="right">
+        <in-curd :tables="tables" :paginations="paginations" style="width:99%;">
+          <template v-slot:header-left-filter>
+            header-left-filter sss vv sdfsfsdf
+          </template>
+          <template #header-right-actions>
+            header-right-actions dd
+          </template>
+          <template slot="footer-left-actions">footer-left-actions</template>
+          <template #actions="{ scope }">
+            <in-button text="编辑" type="text" />
+            {{ scope.row.name }}
+          </template>
+        </in-curd>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -55,12 +44,7 @@ export default {
         {
           name: "dd",
           url:
-            "http://qiniu.in-lin.com/lh/oths/0L66ioQ9HqNaMgPqTAjZccnScQ9MTAyEz1at1loe.jpeg"
-        },
-        {
-          name: "vv",
-          url:
-            "http://qiniu.in-lin.com/lh/oths/5l4oMr8qy4FKcJFqEcPjuMZKImluUFfOUJE6G3sk.jpeg"
+            "http://qcwbo.oss-cn-chengdu.aliyuncs.com/qcwbo//qita/202008261147016763.png"
         }
       ],
       paginations: {
@@ -69,6 +53,8 @@ export default {
         layout: "total, sizes,jumper, prev, pager, next"
       },
       tables: {
+        border: false,
+        // fit: true,
         columns: [
           {
             label: "123",

@@ -1,16 +1,16 @@
 <template>
   <div class="ims-upload" v-bind="$attrs">
+    <!-- {{ fileList }} -->
     <ul class="file-list">
-      <!-- :list="$attrs['file-list']" -->
       <draggable :list="fileList">
         <li class="item" :key="key" v-for="(file, key) in fileList">
           <img
             :src="file.url"
-            v-if="isAssetTypeAnImage(getFileExtension(file.name))"
+            v-if="isAssetTypeAnImage(getFileExtension(file.url))"
           />
 
           <i class="el-icon-edit el-upload-list__item-thumbnail" v-else></i>
-
+          <!-- {{ file.name }} -->
           <span class="cover">
             <span
               class="action preview"
@@ -120,6 +120,9 @@ export default {
     };
   },
   computed: {},
+  mounted() {
+    this.calcUploaderVisible();
+  },
   methods: {
     calcUploaderVisible() {
       // console.info("calcUploaderVisible", this.fileList.length);
@@ -168,6 +171,7 @@ export default {
     getFileExtension(name) {
       const index = name.lastIndexOf(".");
       const extension = name.substr(index + 1);
+      console.log(name, extension);
       return extension;
     },
     handleRemove(file) {

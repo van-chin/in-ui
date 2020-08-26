@@ -3,6 +3,7 @@
     v-bind="$attrs"
     v-on="$listeners"
     :header-cell-style="headerCellStyle"
+    style="width:100%"
   >
     <template v-for="(column, index) in columns">
       <el-table-column v-if="hasSlot(column)" :key="index" v-bind="column">
