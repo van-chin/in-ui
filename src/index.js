@@ -7,6 +7,7 @@ import Preview from "./preview";
 import Table from "./table";
 import Curd from "./curd";
 import Viewer from "./viewer";
+import Split from "./split";
 
 import "./styles/index.scss";
 
@@ -19,7 +20,8 @@ const components = {
   Form,
   Table,
   Curd,
-  Viewer
+  Viewer,
+  Split
 };
 const install = function(Vue, options = {}) {
   // console.info(options);
@@ -38,5 +40,5 @@ const InUI = {
   install,
   ...components
 };
-
+console.info("inUi", InUI);
 export default InUI;

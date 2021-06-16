@@ -1,5 +1,15 @@
 <template>
   <div class="hello">
+    <in-split v-model="split" :min="split" :max="split" style="height:400px;">
+      <div slot="left" class="split-pane-left">
+        left
+      </div>
+      <div slot="right" class="split-pane-right">
+        dddd
+      </div>
+    </in-split>
+
+    ddd
     <in-upload
       action="http://192.168.0.90:8151/merchant/fileupload/upload"
       :file-list="vfileList"
@@ -40,6 +50,7 @@ export default {
   },
   data() {
     return {
+      split: "200px",
       vfileList: [
         {
           name: "dd",
