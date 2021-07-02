@@ -1,10 +1,10 @@
 <template>
   <div :class="wrapClasses">
-    <el-row :gutter="20" style="margin-bottom: 10px;">
-      <el-col :span="19">
+    <el-row :gutter="16" style="margin-bottom: 10px;">
+      <el-col :span="12">
         <slot name="header-left-filter"></slot>
       </el-col>
-      <el-col :span="5" style="text-align: right">
+      <el-col :span="12" style="text-align: right">
         <slot name="header-right-actions"></slot>
       </el-col>
     </el-row>

@@ -5,6 +5,7 @@
         v-for="(item, idx) in options.items"
         :key="idx"
         v-bind="item.attributes"
+        v-show="!item.component.attributes.hidden"
       >
         <slot :name="item.component.slot" v-if="item.component.slot"></slot>
 
@@ -26,7 +27,7 @@
           <el-col>
             <el-form-item
               v-bind="item.attributes"
-              v-if="item.attributes.is_show !== false"
+              v-show="!item.component.attributes.hidden"
             >
               <slot :name="item.component.slot" v-if="item.component.slot" />
 
@@ -46,12 +47,13 @@
           <el-col v-for="(item, indexs) in item" :span="12" :key="indexs">
             <el-form-item
               v-bind="item.attributes"
-              v-if="item.attributes.is_show !== false"
+              v-show="!item.component.attributes.hidden"
             >
               <slot :name="item.component.slot" v-if="item.component.slot" />
+
               <component
                 :is="item.component.name"
-                v-model="
+                :model="
                   options.attributes.model[item.component.attributes.model]
                 "
                 v-bind="item.component.attributes"
@@ -104,6 +106,10 @@ export default {
     this.tmpModel = this.options.attributes.model;
     console.log("mounted: ");
   },
-  methods: {}
+  methods: {
+    test(aaa) {
+      console.info("test =>", aaa);
+    }
+  }
 };
 </script>

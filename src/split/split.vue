@@ -14,7 +14,7 @@
         @mousedown="handleMousedown"
       >
         <slot name="trigger">
-          <trigger mode="vertical" />
+          <trigger mode="vertical" @toggle-expand="toggleExpand" />
         </slot>
       </div>
       <div
@@ -57,6 +57,7 @@
 import { oneOf } from "../utils/assist";
 import { on, off } from "../utils/dom";
 import Trigger from "./split-trigger.vue";
+
 export default {
   name: "InSplit",
   components: {
@@ -128,6 +129,9 @@ export default {
     }
   },
   methods: {
+    toggleExpand() {
+      this.$emit("toggle-expand");
+    },
     px2percent(numerator, denominator) {
       return parseFloat(numerator) / parseFloat(denominator);
     },

@@ -1,6 +1,7 @@
 <template>
   <div :class="classes">
-    <div :class="barConClasses">
+    <div :class="barConClasses" @click="toggleExpand">
+      <!--      <i class="el-icon-caret-left" style="cursor: pointer;font-size: 48px;"></i>-->
       <i
         :class="`${prefix}-bar`"
         v-once
@@ -40,6 +41,11 @@ export default {
         `${this.prefix}-bar-con`,
         this.isVertical ? "vertical" : "horizontal"
       ];
+    }
+  },
+  methods: {
+    toggleExpand() {
+      this.$emit("toggle-expand");
     }
   }
 };
