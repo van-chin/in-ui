@@ -8,8 +8,13 @@
         <slot name="header-right-actions"></slot>
       </el-col>
     </el-row>
-
-    <in-table v-bind="tables">
+    <!-- v-bind="tables" -->
+    <in-table
+      v-bind="$attrs"
+      v-on="$listeners"
+      :columns="tables.columns"
+      :data="tables.data"
+    >
       <!-- 插槽代理 作用域插槽代理数据 -->
       <template
         v-slot:[column.slot_name]="{ scope }"
@@ -89,6 +94,9 @@ export default {
     this.getSlotColumns();
   },
   methods: {
+    tableSelect() {
+      console.info("vv");
+    },
     getSlotColumns() {
       let slotColumns = [];
       slotColumns = this.tables.columns.filter(column => {

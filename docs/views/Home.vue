@@ -21,6 +21,29 @@
             <in-button text="重置" />
           </template>
         </in-form>
+
+        <in-curd
+          :tables="tables"
+          :paginations="paginations"
+          style="width:99%;"
+          @select="tableSelect"
+          @selection-change="tableSelectionChange"
+        >
+          <template v-slot:header-left-filter>
+            header-left-filter sss vv sdfsfsdf
+          </template>
+          <template #header-right-actions>
+            header-right-actions dd
+          </template>
+          <template slot="footer-left-actions">footer-left-actions</template>
+          <template #actions="{ scope }">
+            <template slot="header">
+              1232
+            </template>
+            <in-button text="编辑" type="text" />
+            {{ scope.row.name }}
+          </template>
+        </in-curd>
       </div>
     </in-split>
 
@@ -39,22 +62,11 @@
         leftdddddd
       </div>
       <div class="right">
-        <in-curd :tables="tables" :paginations="paginations" style="width:99%;">
-          <template v-slot:header-left-filter>
-            header-left-filter sss vv sdfsfsdf
-          </template>
-          <template #header-right-actions>
-            header-right-actions dd
-          </template>
-          <template slot="footer-left-actions">footer-left-actions</template>
-          <template #actions="{ scope }">
-            <template slot="header">
-              1232
-            </template>
-            <in-button text="编辑" type="text" />
-            {{ scope.row.name }}
-          </template>
-        </in-curd>
+        <in-table
+          :columns="tables.columns"
+          :data="tables.data"
+          @select="tableSelect"
+        ></in-table>
       </div>
     </div>
   </div>
@@ -87,6 +99,16 @@ export default {
         // fit: true,
         columns: [
           {
+            type: "selection",
+
+            fixed: "left"
+          },
+          {
+            type: "index",
+            label: "序号",
+            fixed: "left"
+          },
+          {
             label: "123",
             prop: "name"
           },
@@ -118,6 +140,12 @@ export default {
         ],
         data: [
           {
+            id: 1,
+            name: "测试数据1",
+            created_at: "ddd"
+          },
+          {
+            id: 2,
             name: "测试数据",
             created_at: "ddd"
           }
@@ -157,7 +185,7 @@ export default {
       ],
       inFormOptions: {
         attributes: {
-          inline: false,
+          inline: true,
           labelPosition: "right",
           labelWidth: "80px",
           customClass: "admin-cu-form",
@@ -238,10 +266,12 @@ export default {
         items: [
           {
             component: {
-              name: "in-button",
+              name: "el-input",
               attributes: {
-                text: "aabc",
-                hidden: true
+                model: "deviceProp.lightSplit.outNum",
+                size: "small",
+                clearable: true,
+                placeholder: "输出端口数"
               },
               events: {
                 _emit_component_name: "HelloWorld",
@@ -253,15 +283,12 @@ export default {
               prop: "title"
             }
           },
-
           {
             component: {
-              name: "el-input",
+              name: "in-button",
               attributes: {
-                model: "deviceProp.lightSplit.outNum",
-                size: "small",
-                clearable: true,
-                placeholder: "输出端口数"
+                text: "aabc",
+                hidden: false
               },
               events: {
                 _emit_component_name: "HelloWorld",
@@ -284,6 +311,13 @@ export default {
       } else {
         this.split = 0;
       }
+    },
+    tableSelectionChange(selection) {
+      console.info("selection", selection);
+    },
+    tableSelect(selection, row) {
+      console.info("selection =>", selection);
+      console.info("row =>", row);
     },
     handleDdClick() {
       console.info("handlTestClick");
