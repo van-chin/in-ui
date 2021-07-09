@@ -1,5 +1,5 @@
 <template>
-  <el-form v-bind="options.attributes" :model="tmpModel" @submit.native.prevent>
+  <el-form v-bind="options.attributes" :model="tmpModel">
     <template v-if="options.attributes.inline">
       <el-form-item
         v-for="(item, idx) in options.items"
@@ -11,9 +11,9 @@
 
         <component
           :is="item.component.name"
-          v-model="options.attributes.model[item.component.attributes.model]"
           v-bind="item.component.attributes"
           v-events="item.component.events"
+          v-model="options.attributes.model[item.component.attributes.model]"
           v-else
         ></component>
       </el-form-item>
