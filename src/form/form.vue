@@ -5,15 +5,16 @@
         v-for="(item, idx) in options.items"
         :key="idx"
         v-bind="item.attributes"
+        :label="$t(item.attributes.label)"
         v-show="!item.component.attributes.hidden"
       >
         <slot :name="item.component.slot" v-if="item.component.slot"></slot>
-
         <component
           :is="item.component.name"
+          v-model="options.attributes.model[item.component.attributes.model]"
           v-bind="item.component.attributes"
           v-events="item.component.events"
-          v-model="options.attributes.model[item.component.attributes.model]"
+          :placeholder="$t(item.component.attributes.placeholder)"
           v-else
         ></component>
       </el-form-item>
@@ -28,6 +29,7 @@
             <el-form-item
               v-bind="item.attributes"
               v-show="!item.component.attributes.hidden"
+              :label="$t(item.attributes.label)"
             >
               <slot :name="item.component.slot" v-if="item.component.slot" />
 
@@ -38,6 +40,7 @@
                 "
                 v-bind="item.component.attributes"
                 v-events="item.component.events"
+                :placeholder="$t(item.component.attributes.placeholder)"
                 v-else
               />
             </el-form-item>
@@ -47,17 +50,18 @@
           <el-col v-for="(item, indexs) in item" :span="12" :key="indexs">
             <el-form-item
               v-bind="item.attributes"
+              :label="$t(item.attributes.label)"
               v-show="!item.component.attributes.hidden"
             >
               <slot :name="item.component.slot" v-if="item.component.slot" />
-
               <component
                 :is="item.component.name"
-                :model="
+                v-model="
                   options.attributes.model[item.component.attributes.model]
                 "
                 v-bind="item.component.attributes"
                 v-events="item.component.events"
+                :placeholder="$t(item.component.attributes.placeholder)"
                 v-else
               />
             </el-form-item>
@@ -75,8 +79,12 @@ import InSelect from "../select";
 import CheckboxGroup from "../checkbox-group";
 import Button from "../button";
 import Upload from "../upload";
+
+// import Locale from "../mixins/locale";
+
 export default {
   name: "InForm",
+  // mixins: [Locale],
   components: {
     "in-button": Button,
     "in-select": InSelect,
@@ -100,16 +108,12 @@ export default {
     };
   },
   created() {
-    console.log("created: ");
+    console.info("options", this.options);
   },
   mounted() {
     this.tmpModel = this.options.attributes.model;
     console.log("mounted: ");
   },
-  methods: {
-    test(aaa) {
-      console.info("test =>", aaa);
-    }
-  }
+  methods: {}
 };
 </script>

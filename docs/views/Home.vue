@@ -1,5 +1,18 @@
 <template>
   <div class="hello">
+    {{ lang }}
+    -- {{ $t(test.abc) }}
+    <el-input :placeholder="$t(test.abc)" />
+    <in-button
+      text="fff"
+      v-events="{
+        _emit_component_name: 'HelloWorld',
+        click: 'batchEdit'
+      }"
+      >dd</in-button
+    >
+    <el-button @click="changeL('zh_CN')">zh_CN</el-button>
+    <el-button @click="changeL('en_US')">en_US</el-button>
     <in-split
       v-model="split"
       :min="0"
@@ -38,9 +51,9 @@
           <template slot="footer-left-actions">footer-left-actions</template>
           <template #actions="{ scope }">
             <template slot="header">
-              1232
+              1232sdfsdfs
             </template>
-            <in-button text="编辑" type="text" />
+            <in-button text="编辑11" type="text" />
             {{ scope.row.name }}
           </template>
         </in-curd>
@@ -73,13 +86,37 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "HelloWorld",
   props: {
     msg: String
   },
+  computed: {
+    ...mapGetters({
+      inFormOptions: `systems/inFormOptions`,
+      tables: `systems/tables`,
+      test: `systems/test`
+    })
+  },
+  watch: {
+    "$i18n.locale": function(newVal, oldVal) {
+      console.info("oldVal", oldVal);
+      console.info("newVal", newVal);
+
+      // this.$store.dispatch('resourceSegments/abc');
+      //
+      // console.info(this.$store.getters['resourceSegments/filterFmOptions'].items[0]);
+
+      // debugger
+
+      // debugger
+    }
+  },
   data() {
     return {
+      lang: "zh_CN",
       defalutSplitWidth: "200px",
       split: "200px",
       vfileList: [
@@ -94,63 +131,7 @@ export default {
         total: 100,
         layout: "total, sizes,jumper, prev, pager, next"
       },
-      tables: {
-        border: false,
-        // fit: true,
-        columns: [
-          {
-            type: "selection",
 
-            fixed: "left"
-          },
-          {
-            type: "index",
-            label: "序号",
-            fixed: "left"
-          },
-          {
-            label: "123",
-            prop: "name"
-          },
-          {
-            label: "标识",
-            prop: "code"
-          },
-
-          {
-            label: "创建时间",
-            key: "created_at",
-            width: 150
-          },
-          {
-            label: "更新时间",
-            key: "updated_at",
-            width: 150
-          },
-          {
-            label: "操作",
-            key: "actions",
-            // renderHeader: function () {
-            //   return '操作';
-            // },
-            // header:"ddd",
-            slot_name: "actions",
-            fixed: "right"
-          }
-        ],
-        data: [
-          {
-            id: 1,
-            name: "测试数据1",
-            created_at: "ddd"
-          },
-          {
-            id: 2,
-            name: "测试数据",
-            created_at: "ddd"
-          }
-        ]
-      },
       tdata: [
         {
           name: "1",
@@ -178,133 +159,21 @@ export default {
           width: 150
         },
         {
-          label: "操作",
+          label: "操作11",
           slot_name: "action",
           fixed: "right"
         }
-      ],
-      inFormOptions: {
-        attributes: {
-          inline: true,
-          labelPosition: "right",
-          labelWidth: "80px",
-          customClass: "admin-cu-form",
-          ref: "cuForm",
-          model: {
-            deviceProp: {
-              lightConnProp: undefined,
-              lightSplit: {
-                inNum: 1,
-                outNum: ""
-              },
-              shelfSlotProp: undefined
-            },
-            cover: "",
-            filess: [],
-            category_ids: [],
-            tag_ids: [],
-            intro: "",
-            video: "",
-            content: "",
-            title: "",
-            status: true,
-            remark: ""
-          },
-          rules: {
-            category_ids: [
-              {
-                type: "array",
-                required: true,
-                message: "请至少选择一个类别",
-                trigger: "change"
-              }
-            ],
-            title: [
-              { required: true, message: "请输入案例标题", trigger: "blur" },
-              {
-                min: 2,
-                max: 20,
-                message: "长度在 2 到 20 个字符",
-                trigger: "blur"
-              }
-            ],
-            id_no: [
-              { required: true, message: "请输入身份证", trigger: "blur" },
-              {
-                min: 1,
-                max: 18,
-                message: "长度在 1 到 18 个字符",
-                trigger: "blur"
-              }
-            ],
-            email: [
-              {
-                type: "email",
-                required: true,
-                message: "请输入格式正确的邮箱",
-                trigger: "blur"
-              }
-            ],
-            password: [
-              {
-                type: "string",
-                min: 4,
-                max: 20,
-                message: "长度在 4 到 20 个字符",
-                trigger: "blur"
-              }
-            ],
-            gender: [
-              { type: "number", message: "请选择性别", trigger: "change" }
-            ],
-            node_ids: [
-              { type: "array", message: "请选择节点", trigger: "change" }
-            ],
-            status: [{ required: true, message: "请选状态", trigger: "change" }]
-          }
-        },
-        items: [
-          {
-            component: {
-              name: "el-input",
-              attributes: {
-                model: "deviceProp.lightSplit.outNum",
-                size: "small",
-                clearable: true,
-                placeholder: "输出端口数"
-              },
-              events: {
-                _emit_component_name: "HelloWorld",
-                click: "dd"
-              }
-            },
-            attributes: {
-              label: "标题",
-              prop: "title"
-            }
-          },
-          {
-            component: {
-              name: "in-button",
-              attributes: {
-                text: "aabc",
-                hidden: false
-              },
-              events: {
-                _emit_component_name: "HelloWorld",
-                click: "dd"
-              }
-            },
-            attributes: {
-              label: "标题",
-              prop: "title"
-            }
-          }
-        ]
-      }
+      ]
     };
   },
   methods: {
+    handleBatchEditClick() {
+      console.info("handleBatchEditClick");
+    },
+    changeL(lang) {
+      this.lang = lang;
+      this.$i18n.locale = lang;
+    },
     toggleExpand() {
       if (this.split === "0px" || this.split === 0) {
         this.split = this.defalutSplitWidth;

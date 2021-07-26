@@ -9,7 +9,10 @@ import Curd from "./curd";
 import Viewer from "./viewer";
 import Split from "./split";
 
+import events from "./directives/events";
+
 import "./styles/index.scss";
+import Message from "element-ui/packages/message";
 
 const components = {
   Button,
@@ -25,6 +28,7 @@ const components = {
 };
 const install = function(Vue, options = {}) {
   // console.info(options);
+  Vue.directive("events", events);
   Object.keys(components).forEach(key => {
     // console.log("key: ", key);
     Vue.component(components[key].name, components[key]);
@@ -40,5 +44,5 @@ const InUI = {
   install,
   ...components
 };
-console.info("inUi", InUI);
+// console.info("inUi", InUI);
 export default InUI;
