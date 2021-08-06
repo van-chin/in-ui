@@ -6,6 +6,12 @@ export default {
         return [];
       }
     },
+    columnSetings: {
+      type: Boolean,
+      default: () => {
+        return false;
+      }
+    },
     headerCellStyle: {
       type: Object,
       default: () => {

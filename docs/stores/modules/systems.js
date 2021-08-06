@@ -5,39 +5,46 @@ const state = {
   tables: {
     border: false,
     // fit: true,
+    columnSetings: false,
     columns: [
       {
         type: "selection",
-
-        fixed: "left"
+        label: "选择框",
+        fixed: "left",
+        show: true
       },
       {
         type: "index",
         label: "序号",
-        fixed: "left"
+        fixed: "left",
+        show: true
       },
       {
-        label: "operate.operate",
-        prop: "name"
+        label: "operate.name",
+        prop: "name",
+        show: true
       },
       {
         label: "标识",
-        prop: "code"
+        prop: "code",
+        show: true
       },
-
       {
         label: "创建时间",
         key: "created_at",
-        width: 150
+        width: 150,
+        show: true
       },
       {
         label: "更新时间",
         key: "updated_at",
-        width: 150
+        width: 150,
+        show: true
       },
       {
         label: "operate.operate",
         key: "actions",
+        show: true,
         // renderHeader: function () {
         //   return '操作';
         // },

@@ -37,6 +37,7 @@ export default {
   /** 通用操作信息 */
   operate: {
     operate: "操作", //操作
+    name: "名称",
     add: "新增", //新增
     view: "查看", //查看
     details: "查看详情", //查看详情

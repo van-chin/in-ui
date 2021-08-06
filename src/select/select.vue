@@ -16,7 +16,7 @@
           v-for="(item, idx) in option.options"
           v-bind="item"
           :value="option[props.value]"
-          :label="option[props.label]"
+          :label="$t(option[props.label])"
           :key="idx"
         ></el-option>
       </el-option-group>

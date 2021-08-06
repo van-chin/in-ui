@@ -13,6 +13,7 @@
       v-bind="$attrs"
       v-on="$listeners"
       :columns="tables.columns"
+      :columnSetings="tables.columnSetings"
       :data="tables.data"
     >
       <!-- 插槽代理 作用域插槽代理数据 -->
