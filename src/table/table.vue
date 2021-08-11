@@ -40,7 +40,9 @@
                     >
                       <el-checkbox
                         v-model="element.show"
-                        :disabled="element.fixed"
+                        :disabled="
+                          element.fixed === 'left' || element.fixed === 'right'
+                        "
                         >{{ $t(element.label) }}</el-checkbox
                       >
                     </el-dropdown-item>
@@ -97,8 +99,15 @@ export default {
       ]
     };
   },
-  mounted() {
+  created() {
+    console.info("created.this.columns =>", this.columns);
     this.draggableColumns = JSON.parse(JSON.stringify(this.columns));
+    console.info("created.this.draggableColumns =>", this.draggableColumns);
+  },
+  mounted() {
+    console.info("this.columns =>", this.columns);
+    this.draggableColumns = JSON.parse(JSON.stringify(this.columns));
+    console.info("this.draggableColumns =>", this.draggableColumns);
   },
   methods: {
     onMove({ relatedContext, draggedContext }) {

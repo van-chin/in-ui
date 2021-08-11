@@ -78,7 +78,6 @@
         <in-table
           :columns="tables.columns"
           :data="tables.data"
-          :columnSetings="true"
           @select="tableSelect"
         ></in-table>
       </div>

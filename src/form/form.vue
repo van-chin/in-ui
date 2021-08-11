@@ -39,6 +39,10 @@
                   options.attributes.model[item.component.attributes.model]
                 "
                 v-bind="item.component.attributes"
+                :startPlaceholder="
+                  $t(item.component.attributes.startPlaceholder)
+                "
+                :endPlaceholder="$t(item.component.attributes.endPlaceholder)"
                 v-events="item.component.events"
                 :placeholder="$t(item.component.attributes.placeholder)"
                 v-else

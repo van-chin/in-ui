@@ -24,7 +24,7 @@
       <el-option
         v-bind="option"
         :value="option[props.value]"
-        :label="option[props.label]"
+        :label="$t(option[props.label])"
         :key="index"
         v-else
       />

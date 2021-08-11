@@ -5,7 +5,7 @@ const state = {
   tables: {
     border: false,
     // fit: true,
-    columnSetings: false,
+    // columnSetings: true,
     columns: [
       {
         type: "selection",
@@ -143,6 +143,66 @@ const state = {
       }
     },
     items: [
+      {
+        component: {
+          name: "el-date-picker",
+          attributes: {
+            clearable: true,
+            type: "datetimerange",
+            valueFormat: "yyyy-MM-dd HH:mm:ss",
+            format: "yyyy-MM-dd HH:mm:ss",
+            startPlaceholder: "main.title",
+            endPlaceholder: "historicalalarmHPage.endTime",
+            style: {
+              width: "335px"
+            },
+            pickerOptions: {
+              shortcuts: [
+                {
+                  text: "最近一周",
+                  onClick(picker) {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+                    picker.$emit("pick", [start, end]);
+                  }
+                },
+                {
+                  text: "最近一个月",
+                  onClick(picker) {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+                    picker.$emit("pick", [start, end]);
+                  }
+                },
+                {
+                  text: "最近三个月",
+                  onClick(picker) {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+                    picker.$emit("pick", [start, end]);
+                  }
+                }
+              ]
+            },
+            rangeSeparator: "-",
+            size: "small",
+            align: "right",
+            model: "startTimes"
+          },
+
+          events: {
+            _emit_component_name: "AlarmRecord",
+            change: "startTimes"
+          }
+        },
+        attributes: {
+          label: "historicalalarmHPage.startTime"
+          // prop: "intro"
+        }
+      },
       {
         component: {
           name: "el-input",
